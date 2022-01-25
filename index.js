@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-app.get("/register", (request, response) => {
+app.get("/getPatient", (request, response) => {
   pool.query("SELECT * FROM patientsRecords", (error, result) => {
     if (error) throw error;
 
@@ -20,7 +20,7 @@ app.get("/register", (request, response) => {
   });
 });
 
-app.post("/register", (request, response) => {
+app.post("/registerPatient", (request, response) => {
   pool.query(
     "INSERT INTO patientsRecords SET ?",
     request.body,
@@ -32,7 +32,7 @@ app.post("/register", (request, response) => {
   );
 });
 
-app.put("/register/:id", (request, response) => {
+app.put("/updatePatient/:id", (request, response) => {
   const id = request.params.id;
 
   pool.query(
@@ -46,7 +46,7 @@ app.put("/register/:id", (request, response) => {
   );
 });
 
-app.delete("/register/:id", (request, response) => {
+app.delete("/deletePatient/:id", (request, response) => {
   const id = request.params.id;
 
   pool.query(
